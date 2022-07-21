@@ -2,6 +2,7 @@
 
 <br>
 
+#### **초기설정(Terminal)**
 ```
 // express-generator 설치
 npm i -g express-generator
