@@ -19,10 +19,7 @@ npm start
 
 <br>
 
-### **서버실행부** : bin/`www`
-### **핵심로직** : `app.js`
-
-* chapter6. learn-express/bin/`www`
+#### **서버실행부** : bin/ `www`
 ```
 // L7
 var app = require('../app');
@@ -37,8 +34,9 @@ var server = http.createServer(app);
 server.listen(port);
 ```
 
+<br>
 
-* `app.js`
+#### **핵심로직** : `app.js`
 ```
 
 ```
