@@ -1,7 +1,5 @@
 ## **6. express web server 만들기**
 
-<br>
-
 #### **초기설정(Terminal)**
 ```
 // express-generator 설치
@@ -21,7 +19,7 @@ npm start
 <br>
 
 #### **서버실행부** : bin/ `www`
-```
+```javascript
 // L7
 var app = require('../app');
 
@@ -38,6 +36,6 @@ server.listen(port);
 <br>
 
 #### **핵심로직** : `app.js`
-```
+```javascript
 
 ```
