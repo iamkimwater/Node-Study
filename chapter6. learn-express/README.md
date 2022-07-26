@@ -74,7 +74,7 @@ app.set('view engine', 'pug');
 	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
 	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
 	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
-	> `app.get` `app.post` `app.delete`등은 GET, POST, DEL 요청들에만 걸리는 미들웨어를 장착
+	> `app.get` `app.post` `app.delete`등은 GET, POST, DEL 요청들에만 걸리는 미들웨어 (라우팅 미들웨어)를 장착
 ```javascript
 // 모든 경우에 동작하는 미들웨어
 
@@ -106,7 +106,7 @@ app.use(function(err, req, res, next) {
 ```
 
 ```javascript
-// 특수한 경우에만 동작하는 미들웨어
+// 특수한 경우에만 동작하는 미들웨어 (라우팅 미들웨어)
 
 // GET 요청에만 걸리는 미들웨어 장착
 // http 요청할 때 '/' 주소와 일치할 때만 동작
