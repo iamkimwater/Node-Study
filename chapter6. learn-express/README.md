@@ -18,7 +18,7 @@ npm start
 
 <br>
 
-#### **서버실행부** : bin/ `www`
+#### **서버실행부** : bin/www
 ```javascript
 // L7 : app 모듈 가져오기
 const app = require('../app');
@@ -35,7 +35,7 @@ server.listen(port);   // port 리스닝하고 있음
 
 <br>
 
-#### **핵심로직(중앙통제실)** : `app.js`
+#### **핵심로직(중앙통제실)** : app.js
 * express 프레임워크를 이용해서 서버를 만드는 방법 (초간단버전)
 ```javascript
 // L2 : express 패키지 가져오기
@@ -68,6 +68,7 @@ app.set('view engine', 'pug');
 ```
 
 * `app.use` : 미들웨어 장착
+
 	> app.use 안에 들어가는 것들이 미들웨어(middleware)<br>
 	> 미들웨어가 익스프레스의 핵심!!!
 ```javascript
