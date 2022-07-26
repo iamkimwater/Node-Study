@@ -67,10 +67,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 ```
 
-* `app.use` : 미들웨어 장착
+* `app.use` : 미들웨어 장착 ( `use`가 `app`에 미들웨어들 연결해 주는 메소드)
 
-	> app.use 안에 들어가는 것들이 미들웨어(middleware)<br>
-	> 미들웨어가 익스프레스의 핵심!!!
+	> `app.use` 안에 들어가는 것들이 미들웨어(middleware)<br>
+	> 미들웨어가 익스프레스의 핵심!!!<br>
+	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
+	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
+	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
+	> 
 ```javascript
 // L16 ~ L39
 app.use(logger('dev'));
