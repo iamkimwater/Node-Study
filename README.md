@@ -1,13 +1,11 @@
 # <p align=center>**Node.js-Study**</p>
 ## <p align=center>**Node.js 에 대해 공부한 기록을 담은 공간입니다.**</p>
 
-<p align="center">
+<!-- <p align="center">
 	<img src="https://user-images.githubusercontent.com/97582839/178905523-9e563c52-0380-4ea5-8fab-1d01b2765ff8.jpg" width="100%">
-</p>
+</p> -->
 
 <br>
-
-
 
 <details>
 <summary>Node</summary>
@@ -151,26 +149,6 @@ console.log('끝');
 	```
 </details>
 
-
-
-<details>
-<summary>.</summary>
-
-```javascript
-
-```
-
-</details>
-
-
-<details>
-<summary>.</summary>
-
-```javascript
-
-```
-
-</details>
 
 
 <details>
