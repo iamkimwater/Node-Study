@@ -67,23 +67,21 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 ```
 
-* `app.use` : 미들웨어 장착 ( `.use`가 `app`에 미들웨어들 연결해 주는 메소드)
+* `app.use` : 모든 경우에 동작하는 미들웨어 장착 ( `.use`가 `app`에 미들웨어들 연결해 주는 메소드)
 
 	> `app.use` 안에 들어가는 것들이 미들웨어(middleware)<br>
 	> 미들웨어가 익스프레스의 핵심!!!<br>
 	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
 	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
-	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
-	> `app.get` `app.post` `app.delete` 등은 GET, POST, DEL 요청들에만 걸리는 미들웨어 (라우팅 미들웨어)를 장착
-```javascript
-// app.use : 모든 경우에 동작하는 미들웨어
+	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄
 
+```javascript
 // L16 ~ L23
-	// next 없어도 다음 미들웨어로 넘어감
-	const logger = () => (req, res, next) => {
-		next();
-	}
-	// logger 형태가 위와 같으므로
+// next 없어도 다음 미들웨어로 넘어감
+const logger = () => (req, res, next) => {
+	next();
+}
+// logger 형태가 위와 같으므로 (next 포함)
 
 	app.use(logger('dev'));
 	app.use(express.json());
@@ -93,7 +91,6 @@ app.set('view engine', 'pug');
 
 	app.use('/', indexRouter);
 	app.use('/users', usersRouter);
-
 
 // L25 ~ L39
 	// catch 404 and forward to error handler (404처리 미들웨어)
@@ -113,9 +110,11 @@ app.set('view engine', 'pug');
 	});
 ```
 
-```javascript
-// app.get, app.post, app.delete : 특수한 경우에만 동작하는 미들웨어 (라우팅 미들웨어)
+* <참고> `app.get`, `app.post`, `app.delete` : 특수한 경우에만 동작하는 미들웨어 (라우팅 미들웨어) 장착
 
+	> GET, POST, DEL 요청들에만 걸리는 미들웨어 (라우팅 미들웨어)를 장착
+
+```javascript
 // GET 요청에만 걸리는 미들웨어 장착
 // http 요청할 때 '/' 주소와 일치할 때만 동작
 app.get('/', (req, res) => {
@@ -137,3 +136,42 @@ app.delete('/users', (req, res) => {
 // 이 외에 app.options ...
 ```
 
+* 유명한 미들웨어들 : `morgan`
+
+	> .
+
+```javascript
+
+```
+
+* 유명한 미들웨어들 : `body-parser`
+
+	> .
+
+```javascript
+
+```
+
+* 유명한 미들웨어들 : `cookie-parser`
+
+	> .
+
+```javascript
+
+```
+
+* 유명한 미들웨어들 : `express-session`
+
+	> .
+
+```javascript
+
+```
+
+* 유명한 미들웨어들 : `flash`
+
+	> .
+
+```javascript
+
+```
