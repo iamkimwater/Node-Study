@@ -62,7 +62,7 @@ module.exports = app;
 
 * `app.set` : express 설정 또는 값 저장 (값 저장은 나중에 사용)
 ```javascript
-// L13 - 14
+// L13 ~ 14
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 ```
@@ -74,39 +74,47 @@ app.set('view engine', 'pug');
 	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
 	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
 	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
-	> `app.get` `app.post` `app.delete`등은 GET, POST, DEL 요청들에만 걸리는 미들웨어 (라우팅 미들웨어)를 장착
+	> `app.get` `app.post` `app.delete` 등은 GET, POST, DEL 요청들에만 걸리는 미들웨어 (라우팅 미들웨어)를 장착
 ```javascript
-// 모든 경우에 동작하는 미들웨어
+// app.use : 모든 경우에 동작하는 미들웨어
 
-// L16 ~ L39
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// L16 ~ L23
+	// next 없어도 다음 미들웨어로 넘어감
+	const logger = () => (req, res, next) => {
+		next();
+	}
+	// logger 형태가 위와 같으므로
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+	app.use(logger('dev'));
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: false }));
+	app.use(cookieParser());
+	app.use(express.static(path.join(__dirname, 'public')));
 
-// catch 404 and forward to error handler (404처리 미들웨어)
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+	app.use('/', indexRouter);
+	app.use('/users', usersRouter);
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+// L25 ~ L39
+	// catch 404 and forward to error handler (404처리 미들웨어)
+	app.use(function(req, res, next) {
+		next(createError(404));
+	});
+
+	// error handler
+	app.use(function(err, req, res, next) {
+		// set locals, only providing error in development
+		res.locals.message = err.message;
+		res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+		// render the error page
+		res.status(err.status || 500);
+		res.render('error');
+	});
 ```
 
 ```javascript
-// 특수한 경우에만 동작하는 미들웨어 (라우팅 미들웨어)
+// app.get, app.post, app.delete : 특수한 경우에만 동작하는 미들웨어 (라우팅 미들웨어)
 
 // GET 요청에만 걸리는 미들웨어 장착
 // http 요청할 때 '/' 주소와 일치할 때만 동작
@@ -125,5 +133,7 @@ app.post('/', (req, res) => {
 app.delete('/users', (req, res) => {
 	
 });
+
+// 이 외에 app.options ...
 ```
 
