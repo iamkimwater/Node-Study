@@ -67,15 +67,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 ```
 
-* `app.use` : 미들웨어 장착 ( `use`가 `app`에 미들웨어들 연결해 주는 메소드)
+* `app.use` : 미들웨어 장착 ( `.use`가 `app`에 미들웨어들 연결해 주는 메소드)
 
 	> `app.use` 안에 들어가는 것들이 미들웨어(middleware)<br>
 	> 미들웨어가 익스프레스의 핵심!!!<br>
 	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
 	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
 	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
-	> 
+	> `app.get` `app.post` `app.delete`등은 GET, POST, DEL 요청들에만 걸리는 미들웨어를 장착
 ```javascript
+// 모든 경우에 동작하는 미들웨어
+
 // L16 ~ L39
 app.use(logger('dev'));
 app.use(express.json());
@@ -100,6 +102,28 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+```
+
+```javascript
+// 특수한 경우에만 동작하는 미들웨어
+
+// GET 요청에만 걸리는 미들웨어 장착
+// http 요청할 때 '/' 주소와 일치할 때만 동작
+app.get('/', (req, res) => {
+
+});
+
+// POST 요청에만 걸리는 미들웨어 장착
+// http 요청할 때 '/' 주소와 일치할 때만 동작
+app.post('/', (req, res) => {
+	
+});
+
+// DELETE 요청에만 걸리는 미들웨어 장착
+// http 요청할 때 '/users' 주소와 일치할 때만 동작
+app.delete('/users', (req, res) => {
+	
 });
 ```
 
