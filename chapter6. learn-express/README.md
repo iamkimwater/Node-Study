@@ -156,24 +156,39 @@ npm i express-session connect-flash
 // 순서 뒤집히면 에러남
 app.use(session());
 app.use(passport.session());
+```
 
-// L20 : static
+```javascript
+// L20 : static 미들웨어
 // public 폴더 안에 있는 파일들 가져오기
 // public 폴더 안에 원하는 파일 없을 때에만 next
 // 원하는 파일 찾으면 next 호출하지 않고 중단 -> 불필요한 서버 작동 방지
 // 보통 logger 다음 최우선순위로 배치
 app.use(express.static(path.join(__dirname, 'public')));
+```
 
-// session
+```javascript
+const session = {
+
+};
+
+// 프론트가 서버로 쿠키 보내주면 secret code로 확인
+app.use(cookieParser('secret code'));
+
+// session 미들웨어
 // 옵션 추가 가능
-app.use(session({
-	resave: false,
-	saveUninitialized: false,
-	secret: 'secret code',   // 쿠키의 secret -> cookie-parser에도 추가해줌 
-				// app.use(cookieParser('secret code'));
+app.use(session({   // 내부적으로 쿠키 사용하므로 secret code 넣어줌
+	resave: false,   // true -> session 객체 저장 (수정사항 없어도)
+	saveUninitialized: false,   // true -> session 객체 업데이트 (빈 객체 또는 수정사항 없어도)
+	secret: 'secret code',   // 쿠키의 secret
 	cookie: {
 		httpOnly: true,
 		secure: false,
 	},
 }));
+```
+
+```javascript
+// flash
+// 
 ```
