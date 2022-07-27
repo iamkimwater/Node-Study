@@ -170,7 +170,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	secret: 'secret code',   // 쿠키의 secret -> cokie-parser에도 추가해줌 
-							// app.use(cookieParser('secret code'));
+				// app.use(cookieParser('secret code'));
 	cookie: {
 		httpOnly: true,
 		secure: false,
