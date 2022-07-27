@@ -136,42 +136,24 @@ app.delete('/users', (req, res) => {
 // 이 외에 app.options ...
 ```
 
-* 유명한 미들웨어들 : `morgan`
+* 유명한 미들웨어들 (미들웨어들 순서 중요!!!)
 
-	> .
-
-```javascript
-
-```
-
-* 유명한 미들웨어들 : `body-parser`
-
-	> .
-
-```javascript
+	> `morgan` : 어떤 요청이 들어왔는지, 어떤 응답을 했는지<br>
+	> `body-parser` : 요청 본문 해석 ( req.on('data'), req.on('end') ), express 4.16부터 내장<br>
+	> `cookie-parser` : 쿠키 파싱<br>
+	> `static` : 정적파일용 라우터 역할, 못 찾으면 next<br>
+	> `express-session` : <br>
+	> `flash` : <br>
 
 ```
-
-* 유명한 미들웨어들 : `cookie-parser`
-
-	> .
-
-```javascript
-
+// terminal
+npm i express-session connect-flash
 ```
 
-* 유명한 미들웨어들 : `express-session`
-
-	> .
-
 ```javascript
-
-```
-
-* 유명한 미들웨어들 : `flash`
-
-	> .
-
-```javascript
-
+// 미들웨어 순서 예시ㅕ
+// passport는 session보다 아래에 있어야 동작
+// 순서 뒤집히면 에러남
+app.use(session());
+app.use(passport.session());
 ```
