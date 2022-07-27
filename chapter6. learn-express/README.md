@@ -69,12 +69,12 @@ app.set('view engine', 'pug');
 
 * `app.use` : 모든 경우에 동작하는 미들웨어 장착 ( `.use`가 `app`에 미들웨어들 연결해 주는 메소드)
 
-	> `app.use` 안에 들어가는 것들이 미들웨어(middleware)<br>
-	> 미들웨어가 익스프레스의 핵심!!!<br>
-	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
-	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
-	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
-	> next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)
+	> * `app.use` 안에 들어가는 것들이 미들웨어(middleware)<br>
+	> * 미들웨어가 익스프레스의 핵심!!!<br>
+	> * 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
+	> * `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
+	> * 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
+	> * next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)
 
 ```javascript
 // L16 ~ L23
@@ -139,12 +139,12 @@ app.delete('/users', (req, res) => {
 
 * 유명한 미들웨어들 (미들웨어들 순서 중요!!!)
 
-	> `morgan` : 어떤 요청이 들어왔는지, 어떤 응답을 했는지<br>
-	> `body-parser` : 요청 본문 해석 ( req.on('data'), req.on('end') ), express 4.16부터 내장<br>
-	> `cookie-parser` : 쿠키 파싱<br>
-	> `static` : 정적파일용 라우터 역할, 못 찾으면 next<br>
-	> `express-session` : 메모리세션 활성화<br>
-	> `flash` : 일회성 메세지 띄워줌<br>
+	> * `morgan` : 어떤 요청이 들어왔는지, 어떤 응답을 했는지<br>
+	> * `body-parser` : 요청 본문 해석 ( req.on('data'), req.on('end') ), express 4.16부터 내장<br>
+	> * `cookie-parser` : 쿠키 파싱<br>
+	> * `static` : 정적파일용 라우터 역할, 못 찾으면 next<br>
+	> * `express-session` : 메모리세션 활성화<br>
+	> * `flash` : 일회성 메세지 띄워줌<br>
 
 ```
 // terminal
@@ -191,9 +191,9 @@ app.use(session({   // 내부적으로 쿠키 사용하므로 secret code 넣어
 
 * 미들웨어의 특징
 
-	> `next`로 다음 미들웨어로 넘어가거나 `res.send` 등으로 응답 보냄<br>
-	> next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)<br>
-	> 미들웨어들 한 줄로 연결 가능<br>
+	> * `next`로 다음 미들웨어로 넘어가거나 `res.send` 등으로 응답 보냄<br>
+	> * next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)<br>
+	> * 미들웨어들 한 줄로 연결 가능<br>
 	> ...
 
 ```javascript
