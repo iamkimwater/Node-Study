@@ -151,9 +151,16 @@ npm i express-session connect-flash
 ```
 
 ```javascript
-// 미들웨어 순서 예시ㅕ
+// 미들웨어 순서 예시
 // passport는 session보다 아래에 있어야 동작
 // 순서 뒤집히면 에러남
 app.use(session());
 app.use(passport.session());
+
+// L20 : static
+// public 폴더 안에 있는 파일들 가져오기
+// public 폴더 안에 원하는 파일 없을 때에만 next
+// 원하는 파일 찾으면 next 호출하지 않고 중단 -> 불필요한 서버 작동 방지
+// 보통 logger 다음 최우선순위로 배치
+app.use(express.static(path.join(__dirname, 'public')));
 ```
