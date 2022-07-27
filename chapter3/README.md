@@ -1,8 +1,8 @@
 ## **3. 노드 기능 알아보기**
 
-#### **노드 모듈시스템**
-* **모듈화** : `module.exports = 값;`
-* **변수 불러오기** : `const 변수 = require('파일경로');`
+### **노드 모듈시스템**
+* 모듈화 : `module.exports = 값;`
+* 변수 불러오기 : `const 변수 = require('파일경로');`
 ```javascript
 // var.js 변수들을 func.js 에 불러오고 func.js 함수를 index.js에서 사용하기
 
@@ -50,14 +50,14 @@ console.log(checkStringOddOrEven('hello'));
 
 <br>
 
-#### **global 객체**
+### **global 객체**
 ```javascript
 // 사용하지 않는 것을 권장함
 ```
 
 <br>
 
-#### **console 객체**
+### **console 객체**
 * 객체 안에 디버깅을 도와주는 메서드 다수 존재
 ```javascript
 const string = 'abc';
@@ -102,10 +102,10 @@ console.timeEnd('전체시간');
 
 <br>
 
-#### **setTimeout, setInterval, setImmediate**
-* setTimeout, setInterval로 설정
-* clearTimeout, clearInterval로 해제
-* setImmediate : 함수를 이벤트루프로 보낼 때 사용
+### **setTimeout, setInterval, setImmediate**
+* `setTimeout`, `setInterval`로 설정
+* `clearTimeout`, `clearInterval`로 해제
+* `setImmediate` : 함수를 이벤트루프로 보낼 때 사용
 
 ```javascript
 // setTimeout, setInterval
@@ -142,84 +142,95 @@ clearImmediate(immediate2);
 
 <br>
 
-#### **__filename, __dirname, process**
+### **__filename, __dirname**
+* `__filename` : 현재 파일 경로
+* `__dirname` : 현재 파일이 들어있는 경로
+```javascript
+console.log(__filename);
+console.log(__dirname);
+```
+
+<br>
+
+### **process 객체**
+* 현재 실행중인 노드 프로그램 정보 들어있음
 ```javascript
 
 ```
 
 <br>
 
-#### **os 모듈**
+### **os 모듈**
 ```javascript
 
 ```
 
 <br>
 
-#### **path 모듈**
+### **path 모듈**
 ```javascript
 
 ```
 
 <br>
 
-#### **url 모듈**
+### **url 모듈**
 ```javascript
 
 ```
 
 <br>
 
-#### **querystring 모듈**
+### **querystring 모듈**
 ```javascript
 
 ```
 
 <br>
 
-#### **crypto 단방향 암호화(해시)**
+### **crypto 단방향 암호화(해시)**
 ```javascript
 
 ```
 
 <br>
 
-#### **crypto 양방향 암호화**
+### **crypto 양방향 암호화**
 ```javascript
 
 ```
 
-#### **util 모듈(deprecate, promisify)**
+### **util 모듈(deprecate, promisify)**
 ```javascript
 
 ```
 
-#### **fs 모듈(동기, 비동기)**
+### **fs 모듈(동기, 비동기)**
 ```javascript
 
 ```
 
-#### **버퍼, 스트림**
+### **버퍼, 스트림**
 ```javascript
 
 ```
 
-#### **.**
+### **.**
 ```javascript
 
 ```
 
-#### **기타 fs 메서드**
+### **기타 fs 메서드**
 ```javascript
 
 ```
 
-#### **event 모듈**
+### **event 모듈**
 ```javascript
 
 ```
 
-#### **예외처리하기**
+### **예외처리하기**
 ```javascript
 
 ```

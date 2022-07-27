@@ -208,7 +208,7 @@ app.use(logger('dev'), express.static(path.join(__dirname, 'public')), express.j
 
 * 라우터 분리
 
-	- app.js 에서 분리
+	- app.js 에서 분리 (가독성을 위해)
 	- routes 폴더에 라우터들 따로 모여있음
 
 ```javascript
