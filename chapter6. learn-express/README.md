@@ -73,7 +73,8 @@ app.set('view engine', 'pug');
 	> 미들웨어가 익스프레스의 핵심!!!<br>
 	> 요청( `req` ) >>> 미들웨어들( `app.use` ) >>> 응답( `res` )<br>
 	> `app.use` 안의 `req`, `res`로 요청, 응답 조작<br>
-	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄
+	> 미들웨어에서는 (1) `next`로 다음 미들웨어로 넘어가거나 (2) `res.send` 등으로 응답 보냄<br>
+	> next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)
 
 ```javascript
 // L16 ~ L23
@@ -143,7 +144,7 @@ app.delete('/users', (req, res) => {
 	> `cookie-parser` : 쿠키 파싱<br>
 	> `static` : 정적파일용 라우터 역할, 못 찾으면 next<br>
 	> `express-session` : 메모리세션 활성화<br>
-	> `flash` : <br>
+	> `flash` : 일회성 메세지 띄워줌<br>
 
 ```
 // terminal
@@ -188,7 +189,19 @@ app.use(session({   // 내부적으로 쿠키 사용하므로 secret code 넣어
 }));
 ```
 
+* 미들웨어의 특징
+
+	> `next`로 다음 미들웨어로 넘어가거나 `res.send` 등으로 응답 보냄<br>
+	> next도, res 메소드도 사용하지 않으면 클라이언트는 계속 기다림 (무한로딩, 실제로는 timeout 될때까지)<br>
+	> 미들웨어들 한 줄로 연결 가능<br>
+	> ...
+
 ```javascript
-// flash
-// 
+// 미들웨어들 한 줄 연결
+// app.use(미들웨어, 미들웨어, 미들웨어, ...);
+// app.get(미들웨어, 미들웨어, 미들웨어, ...);
+// app.post(미들웨어, 미들웨어, 미들웨어, ...);
+// app.put(미들웨어, 미들웨어, 미들웨어, ...);
+// ...
+app.use(logger('dev'), express.static(path.join(__dirname, 'public')), express.json(), express.urlencoded({ extended: false }), cookieParser());
 ```
