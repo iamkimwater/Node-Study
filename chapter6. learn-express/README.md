@@ -142,7 +142,7 @@ app.delete('/users', (req, res) => {
 	> `body-parser` : 요청 본문 해석 ( req.on('data'), req.on('end') ), express 4.16부터 내장<br>
 	> `cookie-parser` : 쿠키 파싱<br>
 	> `static` : 정적파일용 라우터 역할, 못 찾으면 next<br>
-	> `express-session` : <br>
+	> `express-session` : 메모리세션 활성화<br>
 	> `flash` : <br>
 
 ```
@@ -163,4 +163,17 @@ app.use(passport.session());
 // 원하는 파일 찾으면 next 호출하지 않고 중단 -> 불필요한 서버 작동 방지
 // 보통 logger 다음 최우선순위로 배치
 app.use(express.static(path.join(__dirname, 'public')));
+
+// session
+// 옵션 추가 가능
+app.use(session({
+	resave: false,
+	saveUninitialized: false,
+	secret: 'secret code',   // 쿠키의 secret -> cokie-parser에도 추가해줌 
+							// app.use(cookieParser('secret code'));
+	cookie: {
+		httpOnly: true,
+		secure: false,
+	},
+}));
 ```
