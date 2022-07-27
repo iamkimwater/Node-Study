@@ -169,8 +169,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
 	resave: false,
 	saveUninitialized: false,
-	secret: 'secret code',   // 쿠키의 secret -> cokie-parser에도 추가해줌 
-				// app.use(cookieParser('secret code'));
+	secret: 'secret code',   // 쿠키의 secret -> cookie-parser에도 추가해줌 
+	// app.use(cookieParser('secret code'));
 	cookie: {
 		httpOnly: true,
 		secure: false,
