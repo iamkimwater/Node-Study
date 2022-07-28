@@ -63,6 +63,7 @@ module.exports = app;
 * `app.set` : express 설정 또는 값 저장 (값 저장은 나중에 사용)
 ```javascript
 // L13 ~ 14
+// 뒤에 템플릿엔진 pug 부분에서 더 상세히 다룸
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 ```
@@ -148,7 +149,7 @@ app.delete('/users', (req, res) => {
 	- `flash` : 일회성 메세지 띄워줌<br>
 
 ```
-// terminal
+// Terminal
 npm i express-session connect-flash
 ```
 
@@ -210,6 +211,9 @@ app.use(logger('dev'), express.static(path.join(__dirname, 'public')), express.j
 
 	- app.js 에서 분리 (가독성을 위해)
 	- routes 폴더에 라우터들 따로 모여있음
+	- 경로
+		- `app.use('/abc')` + `router.get('/df')` = `GET/abc/df`
+		- `app.use('/')` + `router.post('/')` = `POST//` = `POST/`
 
 ```javascript
 // L7 ~ L8
@@ -220,4 +224,137 @@ const usersRouter = require('./routes/users');
 // L22 ~ L23
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+```
+
+* 404 NOT FOUND 미들웨어
+
+	- 미들웨어와 라우터들 다음에 위치 -> 모든 라우터에 요청이 걸리지 않는 상황을 처리
+	- <참고> 400번대 에러는 클라이언트에서 에러가 발생한 경우
+
+```javascript
+// http-errors 패키지 이용해서 처리
+const createError = require('http-errors');   // L1
+
+// catch 404 and forward to error handler (404처리 미들웨어)   // L25 ~ L28
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// 다른 표현
+// express에서는 writeHead(404)대신 status(404)사용
+app.use((req, res, next) => {
+	res.status(404).send('NOT FOUND');
+});
+```
+
+* 500 에러 처리 미들웨어
+
+	- 파라미터로 `err` 포함
+	- 미들웨어와 라우터들 다음에 위치
+	- <참고> 500번대 에러는 서버쪽 에러가 발생한 경우
+
+```javascript
+// L30 ~ L39
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+// 다른 표현
+app.use(function(err, req, res, next) {
+	res.status(500).send('SERVER ERROR');
+});
+```
+
+* <추가> 에러 처리
+
+	- `next(error)` : 다음 미들웨어, 라우터 전부 건너뛰고 에러처리 미들웨어로 이동
+
+<br>
+
+<details>
+<summary><보너스코드> if문 활용한 50% 확률로 실행되는 코드</summary>
+<br>
+
+* if문 활용해서 `next()` 조정 -> 서버의 요청 - 응답 흐름 조정 가능
+
+```javascript
+// 50% 확률로
+app.use((req, res, next) => {
+	console.log('첫 번째 미들웨어');
+	if (+new Date() % 2 === 0 {
+	next();   // 실행되거나 -> '두 번째 미들웨어' 또는 그 다음으로 넘어감
+	} else {
+		res.send('50% 당첨');   // 실행됨 -> '두 번째 미들웨어' 실행되지 않음
+	}
+}, (req, res, next) => {
+	console.log('두 번째 미들웨어');
+	next();
+});
+```
+
+</details>
+
+<br>
+
+* 템플릿 엔진 : html 한계 (변수, 조건문, 반복문 등 사용 불가) 극복하기 위해 나온 언어
+
+	- PUG
+		- pug 파일은 views 폴더에 모여있음
+
+```
+// 초기 설정 : html 대신 템플릿 엔진으로 pug를 사용하겠다는 의미
+
+express 폴더명 --view=pug
+```
+
+```javascript
+// L12 ~ L14
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));   // pug파일은 views폴더에 있음
+app.set('view engine', 'pug');   // 뷰 엔진으로 pug 사용
+```
+
+```pug
+//- views 폴더에 test.pug 추가
+
+//- 원래 html 형태
+//- <!DOCTYPE html> 
+//- <html>
+//- <head>
+//- <title>익스프레스</title>
+//- <link rel="stylesheet" href="/stylesheet/style.css">
+//- </head>
+//- </html>
+
+//- pug 문법 사용
+//- pug는 들여쓰기로 부모 자식 태그를 구분
+//- 들여쓰기는 탭, 스페이스 모두 가능하지만 반드시 하나로 통일해야 함
+//- 들여쓰기 잘못하면 렌더링 에러가 나므로 주의해서 작성해야 함
+
+doctype html 
+html
+	head
+		-const title = '익스프레스'   // 하이픈 뒤 변수 선언 (app.js에서도 선언 가능)
+		-const title2 = '안녕'
+		title= title + ' ' + title2   // 등호 뒤에 변수 사용
+		link (rel='stylesheet' href='/stylesheet/style.css')
+```
+
+```javascript
+// pug 파일 가져오기
+res.render('test', {   // test.pug를 html로 렌더링
+	title: '익스프레스',   // render 메소드 두 번째 인자로 변수 선언 가능
+	title2: '안녕',
+});
+
+
+// <참고> 렌더링 : 개발자가 작성한 코드를 유저에게 보여지는 형태로 보여주는 것
+// render() : 첫 번째 인자는 템플릿, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
 ```

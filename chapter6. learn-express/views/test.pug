@@ -1,0 +1,24 @@
+//- 원래 html 형태
+//- <!DOCTYPE html> 
+//- <html>
+//- <head>
+//- <title>익스프레스</title>
+//- <link rel="stylesheet" href="/stylesheet/style.css">
+//- </head>
+//- </html>
+
+//- pug 문법 사용
+doctype html 
+html
+	head
+		-const title = '익스프레스'
+		-const title2 = '안녕'
+		title= title + ' ' + title2
+		link (rel='stylesheet' href='/stylesheet/style.css')
+
+
+//- app.js 파일에서 변수 선언 가능
+//- res.render('test', {
+//- 	title: '익스프레스',
+//- 	title2: '안녕',
+//- });

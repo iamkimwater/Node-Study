@@ -154,22 +154,62 @@ console.log(__dirname);
 
 ### **process 객체**
 * 현재 실행중인 노드 프로그램 정보 들어있음
-```javascript
+```
+// Terminal
+process.version   // 노드 버전
+process.arch   // 프로세서의 아키텍처
+process.platform   // 운영체제 정보
+process.pid   // 현재 실행되고 있는 프로세스 id
+process.uptime()   // 노드 실행된 지 얼마나 지났는지
+process.cwd   // 프로세스 실행 위치
+process.execPath   // 노드 설치된 경로
+process.cpuUsage()   // 현재 cpu 사용량
+process.exit   // 종료
+```
 
+```javascript
+// process.exit 사용예시
+// 꽤 많이 사용됨
+// 에러 터졌을 때 서버 죽이고 다시 시작한다던지 등
+for (ler i = 0; i < 100000; i++) {
+	console.log(i);
+	process.exit();
+}
+
+// 실행결과
+0
 ```
 
 <br>
 
 ### **os 모듈**
-```javascript
-
+* 내장 모듈
+* 운영체제 관련 모듈
+```
+// Terminal
+const os = require('os')
+os.arch()
+os.platform
+os.type()
+os.uptime()
+os.hostname()
+os.release()
+os.homedir()
+os.tmpdir()
+os.freemem()   // 추가적으로 사용가능한 메모리
+os.totalmem()   // 전체 메모리
+os.cpus()
 ```
 
 <br>
 
 ### **path 모듈**
-```javascript
-
+```
+// Terminal
+const path = require('path')
+path.sep   // 디렉토리 구분자, 윈도우는 \\
+path.delimiter   // 환경변수 구분자, 윈도우는 ;
+...(정리필요)
 ```
 
 <br>
