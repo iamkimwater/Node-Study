@@ -340,11 +340,11 @@ app.set('view engine', 'pug');   // 뷰 엔진으로 pug 사용
 
 doctype html 
 html
-	head
-		-const title = '익스프레스'   // 하이픈 뒤 변수 선언 (app.js에서도 선언 가능)
-		-const title2 = '안녕'
-		title= title + ' ' + title2   // 등호 뒤에 변수 사용
-		link (rel='stylesheet' href='/stylesheet/style.css')
+ head
+  -const title = '익스프레스'   // 하이픈 뒤 변수 선언 (app.js에서도 선언 가능)
+  -const title2 = '안녕'
+  title= title + ' ' + title2   // 등호 뒤에 변수 사용
+  link (rel='stylesheet' href='/stylesheet/style.css')
 ```
 
 ```javascript
