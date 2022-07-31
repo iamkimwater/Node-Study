@@ -307,6 +307,13 @@ app.use((req, res, next) => {
 
 	- PUG
 		- pug 파일은 views 폴더에 모여있음
+		- 문법
+			- 속성은 () 안에
+			- div 생략 가능
+			- 태그 (한 칸 띄고) 내용 작성
+			- id는 #
+			- class는 .
+
 
 ```
 // 초기 설정 : html 대신 템플릿 엔진으로 pug를 사용하겠다는 의미
@@ -322,21 +329,21 @@ app.set('view engine', 'pug');   // 뷰 엔진으로 pug 사용
 ```
 
 ```pug
-//- views 폴더에 test.pug 추가
+// views 폴더에 test.pug 추가
 
-//- 원래 html 형태
-//- <!DOCTYPE html> 
-//- <html>
-//- <head>
-//- <title>익스프레스</title>
-//- <link rel="stylesheet" href="/stylesheet/style.css">
-//- </head>
-//- </html>
+// 원래 html 형태
+// <!DOCTYPE html> 
+// <html>
+// <head>
+// <title>익스프레스</title>
+// <link rel="stylesheet" href="/stylesheet/style.css">
+// </head>
+// </html>
 
-//- pug 문법 사용
-//- pug는 들여쓰기로 부모 자식 태그를 구분
-//- 들여쓰기는 탭, 스페이스 모두 가능하지만 반드시 하나로 통일해야 함
-//- 들여쓰기 잘못하면 렌더링 에러가 나므로 주의해서 작성해야 함
+// pug 문법 사용
+// pug는 들여쓰기로 부모 자식 태그를 구분
+// 들여쓰기는 탭, 스페이스 모두 가능하지만 반드시 하나로 통일해야 함
+// 들여쓰기 잘못하면 렌더링 에러가 나므로 주의해서 작성해야 함
 
 doctype html 
 html
@@ -344,7 +351,24 @@ html
   -const title = '익스프레스'   // 하이픈 뒤 변수 선언 (app.js에서도 선언 가능)
   -const title2 = '안녕'
   title= title + ' ' + title2   // 등호 뒤에 변수 사용
-  link (rel='stylesheet' href='/stylesheet/style.css')
+  link (rel='stylesheet' href='/stylesheet/style.css')   // 속성은 () 안에
+
+ 	body
+	 div(id="kimwater" width=500)
+	 // div#kimwater(width=500)   // id #
+	 // #kimwater(width=500)   // div 생략
+	 // <div id="kimwater" width="500"></div> 로 렌더링
+
+	 span(class='express')
+	 // span.express   // class .
+	 // <span class="express"></span> 로 렌더링
+
+	 p 
+	  | 안녕하세요.
+	  | 여러 줄을 입력합니다.
+	  br
+	  | 태그도 중간에 넣을 수 있어요.
+	  // <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
 ```
 
 ```javascript

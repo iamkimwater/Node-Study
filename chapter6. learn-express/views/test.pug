@@ -1,13 +1,13 @@
-//- 원래 html 형태
-//- <!DOCTYPE html> 
-//- <html>
-//- <head>
-//- <title>익스프레스</title>
-//- <link rel="stylesheet" href="/stylesheet/style.css">
-//- </head>
-//- </html>
+// 원래 html 형태
+// <!DOCTYPE html> 
+// <html>
+// <head>
+// <title>익스프레스</title>
+// <link rel="stylesheet" href="/stylesheet/style.css">
+// </head>
+// </html>
 
-//- pug 문법 사용
+// pug 문법 사용
 doctype html 
 html
 	head
@@ -16,9 +16,29 @@ html
 		title= title + ' ' + title2
 		link (rel='stylesheet' href='/stylesheet/style.css')
 
+	body
+		div(id="kimwater" width=500)
+		// div#kimwater(width=500)   // id #
+		// #kimwater(width=500)   // div 생략
+		// <div id="kimwater" width="500"></div> 로 렌더링
 
-//- app.js 파일에서 변수 선언 가능
-//- res.render('test', {
-//- 	title: '익스프레스',
-//- 	title2: '안녕',
-//- });
+		span(class='express')
+		// span.express   // class .
+		// <span class="express"></span> 로 렌더링
+
+		button(type='submit') 전송
+		// <button type='submit'>전송</type> 로 렌더링
+
+		p 
+			| 안녕하세요.
+			| 여러 줄을 입력합니다.
+			br
+			| 태그도 중간에 넣을 수 있어요.
+		// <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
+
+
+// app.js 파일에서 변수 선언 가능
+// res.render('test', {
+// 	title: '익스프레스',
+// 	title2: '안녕',
+// });
