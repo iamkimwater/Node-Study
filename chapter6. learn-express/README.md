@@ -352,6 +352,10 @@ html
   -const title2 = '안녕'
   title= title + ' ' + title2   // 등호 뒤에 변수 사용
   link (rel='stylesheet' href='/stylesheet/style.css')   // 속성은 () 안에
+	style.
+	 p {
+		color: red;
+	 }
 
  	body
 	 div(id="kimwater" width=500)
@@ -363,12 +367,26 @@ html
 	 // span.express   // class .
 	 // <span class="express"></span> 로 렌더링
 
+	 // 조건문
+	 if variable
+	  div 참입니다.
+	 else 
+	  div 거짓입니다.
+
+	 // 반복문
+	 for i in ['사과', '배', '오렌지']
+	  div= i
+
 	 p 
 	  | 안녕하세요.
 	  | 여러 줄을 입력합니다.
 	  br
 	  | 태그도 중간에 넣을 수 있어요.
 	  // <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
+
+	 script.
+	  var message = 'bug';
+	  alert(message);
 ```
 
 ```javascript
