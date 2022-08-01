@@ -6,6 +6,13 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+		<% for (i in ['사과', '배', '오렌지']) { %>
+			<p>Welcome to <%= title %></p>
+		<% } %>
+		<% if (title === 'ejs') { %>
+			<p>ejs 공부합시다.</p>
+		<% } else { %>
+			<p>pug 공부합시다.</p>
+		<% } %>
   </body>
 </html>

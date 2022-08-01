@@ -483,3 +483,28 @@ html
 ```
 
 * *  EJS
+		* 변수 : `<%= 변수 %>` 형태
+		* 반복문 : `<% for (i in [...]) { %>` ... `<% } %>` 형태, % 뒤에 등호 없음 주의
+		* 조건문 : `<% if (...) { %>` ... `<% } else { %>` ... `<% } %>` 형태, % 뒤에 등호 없음 주의
+
+```ejs
+// index.ejs
+<!DOCTYPE html>
+<html>
+ <head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+ </head>
+ <body>
+  <h1><%= title %></h1>
+	<% for (i in ['사과', '배', '오렌지']) { %>
+  <p>Welcome to <%= title %></p>
+	<% } %>
+	<% if (title === 'ejs') { %>
+	 <p>ejs 공부합시다.</p>
+	<% } else { %>
+	 <p>pug 공부합시다.</p>
+	<% } %>
+ </body>
+</html>
+```
