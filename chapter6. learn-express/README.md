@@ -404,27 +404,80 @@ res.render('test', {   // test.pug를 html로 렌더링
 ```
 
 ```pug
-// header.pug, footer.pug 파일 생성
-// 중복되는 부분 include로 해결
+// 중복되는 부분 처리하는 방법
 
+// test2.pug 파일 생성
+// header.pug, footer.pug 파일 생성
+// layout.pug 파일 작성
+// extends layout.pug
+```
+```pug
+// test.pug
+extends layout.pug 
+
+block content 
+	#kimwater(width=500)
+
+	span.express
+
+	button(type='submit') 전송
+
+	if variable
+		div 참입니다.
+	else 
+		div 거짓입니다.
+
+	for i in ['사과', '배', '오렌지']
+		div= i
+
+	p 
+		| 안녕하세요.
+		| 여러 줄을 입력합니다.
+		br
+		| 태그도 중간에 넣을 수 있어요.
+
+block script
+	script.
+		var message = 'bug';
+		alert(message);
+```
+```pug
+// test2.pug
+extends layout.pug
+
+block content
+	#main 본문입니다.
+```
+```pug
 // header.pug
 #header
  span 헤더입니다.
-
+```
+```pug
 // footer.pug
 #footer
  span 푸터입니다.
-
-// test.pug
-body
- include header
-
- include footer
 ```
-
 ```pug
-// layout.pug 파일에 작성
-
 // layout.pug
+doctype html 
+html
+	head
+		-const variable = true
+		-const title = '익스프레스'
+		-const title2 = '안녕'
+		title= title + ' ' + title2
+		link (rel='stylesheet' href='/stylesheet/style.css')
+		style.
+			p {
+				color: red;
+			}
 
+	body
+		include header
+		block content   // block : 바뀌는 부분
+		include footer
+		block.script 
+			script.   // script block 의 기본값
+				console.log('hi')
 ```
