@@ -11,17 +11,16 @@
 	- 자바스크립트 객체와 관계형 DB를 연결
 
 ```
-
+// Terminal
+npm i sequelize mysql2
+npm i -g sequelize-cli
+sequelize init
 ```
 
 <br>
 
-### **.**
-```
+### **models/index.js**
+
+```javascript
 
 ```
-
-Create 생성
-Read 조회
-Update 수정
-Delete 삭제
