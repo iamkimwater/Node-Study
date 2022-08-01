@@ -353,49 +353,49 @@ html
   -const title2 = '안녕'
   title= title + ' ' + title2   // 등호 뒤에 변수 사용
   link (rel='stylesheet' href='/stylesheet/style.css')   // 속성은 () 안에
-	style.
-	 p {
-		color: red;
-	 }
-
- 	body
-	 div(id="kimwater" width=500)
-	 // div#kimwater(width=500)   // id #
-	 // #kimwater(width=500)   // div 생략
-	 // <div id="kimwater" width="500"></div> 로 렌더링
-
-	 span(class='express')
-	 // span.express   // class .
-	 // <span class="express"></span> 로 렌더링
-
-	 // 조건문
-	 if variable
-	  div 참입니다.
-	 else 
-	  div 거짓입니다.
-
-	 // 반복문
-	 for i in ['사과', '배', '오렌지']
-	  div= i
-
-	 p 
-	  | 안녕하세요.
-	  | 여러 줄을 입력합니다.
-	  br
-	  | 태그도 중간에 넣을 수 있어요.
-	  // <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
-
-	 script.
-	  var message = 'bug';
-	  alert(message);
+  style.
+   p {
+    color: red;
+   }
+  
+ body
+  #kimwater(width=500)
+	// div(id="kimwater" width=500)
+  // div#kimwater(width=500)   // id #
+  // <div id="kimwater" width="500"></div> 로 렌더링
+  
+  span(class='express')
+  // span.express   // class .
+  // <span class="express"></span> 로 렌더링
+  
+  // 조건문
+  if variable
+   div 참입니다.
+  else 
+   div 거짓입니다.
+  
+  // 반복문
+  for i in ['사과', '배', '오렌지']
+   div= i
+  
+  p 
+   | 안녕하세요.
+   | 여러 줄을 입력합니다.
+   br
+   | 태그도 중간에 넣을 수 있어요.
+   // <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
+  
+  script.
+   var message = 'bug';
+   alert(message);
 ```
 
 ```javascript
 // app.js
 // pug 파일 가져오기
 res.render('test', {   // test.pug를 html로 렌더링
-	title: '익스프레스',   // render 메소드 두 번째 인자로 변수 선언 가능
-	title2: '안녕',
+ title: '익스프레스',   // render 메소드 두 번째 인자로 변수 선언 가능
+ title2: '안녕',
 });
 
 
@@ -416,37 +416,37 @@ res.render('test', {   // test.pug를 html로 렌더링
 extends layout.pug 
 
 block content 
-	#kimwater(width=500)
+ #kimwater(width=500) 
 
-	span.express
+ span.express 
 
-	button(type='submit') 전송
+ button(type='submit') 전송 
 
-	if variable
-		div 참입니다.
-	else 
-		div 거짓입니다.
+ if variable
+  div 참입니다.
+ else 
+  div 거짓입니다. 
 
-	for i in ['사과', '배', '오렌지']
-		div= i
+ for i in ['사과', '배', '오렌지']
+  div= i 
 
-	p 
-		| 안녕하세요.
-		| 여러 줄을 입력합니다.
-		br
-		| 태그도 중간에 넣을 수 있어요.
+ p 
+  | 안녕하세요.
+  | 여러 줄을 입력합니다.
+  br
+  | 태그도 중간에 넣을 수 있어요.
 
 block script
-	script.
-		var message = 'bug';
-		alert(message);
+ script.
+  var message = 'bug';
+  alert(message);
 ```
 ```pug
 // test2.pug
 extends layout.pug
 
 block content
-	#main 본문입니다.
+ #main 본문입니다.
 ```
 ```pug
 // header.pug
@@ -462,22 +462,22 @@ block content
 // layout.pug
 doctype html 
 html
-	head
-		-const variable = true
-		-const title = '익스프레스'
-		-const title2 = '안녕'
-		title= title + ' ' + title2
-		link (rel='stylesheet' href='/stylesheet/style.css')
-		style.
-			p {
-				color: red;
-			}
-
-	body
-		include header
-		block content   // block : 바뀌는 부분
-		include footer
-		block.script 
-			script.   // script block 의 기본값
-				console.log('hi')
+ head
+  -const variable = true
+  -const title = '익스프레스'
+  -const title2 = '안녕'
+  title= title + ' ' + title2
+  link (rel='stylesheet' href='/stylesheet/style.css')
+  style.
+   p {
+    color: red;
+   }
+ 
+ body
+  include header
+  block content   // block : 바뀌는 부분
+  include footer
+  block.script 
+   script.   // script block 의 기본값
+   console.log('hi')
 ```
