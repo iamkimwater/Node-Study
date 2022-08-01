@@ -497,8 +497,9 @@ html
  </head>
  <body>
   <h1><%= title %></h1>
-	<% for (i in ['사과', '배', '오렌지']) { %>
-  <p>Welcome to <%= title %></p>
+	<% for (i in fruits) { %>   // in : 키 출력
+  // <% for (i of fruits) { %>   // of : 값 출력
+  <p>Welcome to <%= i %></p>
 	<% } %>
 	<% if (title === 'ejs') { %>
 	 <p>ejs 공부합시다.</p>
@@ -507,4 +508,15 @@ html
 	<% } %>
  </body>
 </html>
+
+
+// routes/index.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/', function(req, res, next) {
+	res.render('index', { title: 'ejs' , fruits: ['사과', '배', '오렌지'] });
+});
+
+module.exports = router;
 ```
