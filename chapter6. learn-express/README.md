@@ -481,3 +481,5 @@ html
    script.   // script block 의 기본값
    console.log('hi')
 ```
+
+* *  EJS
