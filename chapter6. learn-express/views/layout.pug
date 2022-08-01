@@ -1,7 +1,20 @@
-doctype html
+doctype html 
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+		-const variable = true
+		-const title = '익스프레스'
+		-const title2 = '안녕'
+		title= title + ' ' + title2
+		link (rel='stylesheet' href='/stylesheet/style.css')
+		style.
+			p {
+				color: red;
+			}
+
+	body
+		include header
+		block content   // block : 바뀌는 부분
+		include footer
+		block.script 
+			script.   // script block 의 기본값
+				console.log('hi')

@@ -1,3 +1,35 @@
+extends layout.pug 
+
+block content 
+	#kimwater(width=500)
+
+	span.express
+
+	button(type='submit') 전송
+
+	if variable
+		div 참입니다.
+	else 
+		div 거짓입니다.
+
+	for i in ['사과', '배', '오렌지']
+		div= i
+
+	p 
+		| 안녕하세요.
+		| 여러 줄을 입력합니다.
+		br
+		| 태그도 중간에 넣을 수 있어요.
+
+block script
+	script.
+		var message = 'bug';
+		alert(message);
+
+
+
+
+<!-- layout 적용 전
 // 원래 html 형태
 // <!DOCTYPE html> 
 // <html>
@@ -22,13 +54,15 @@ html
 			}
 
 	body
-		div(id="kimwater" width=500)
-		// div#kimwater(width=500)   // id #
-		// #kimwater(width=500)   // div 생략
+		include header
+
+		#kimwater(width=500)   // div #
+		// div(id="kimwater" width=500)
+		// div#kimwater(width=500)
 		// <div id="kimwater" width="500"></div> 로 렌더링
 
-		span(class='express')
-		// span.express   // class .
+		span.express   // class .
+		// span(class='express')
 		// <span class="express"></span> 로 렌더링
 
 		button(type='submit') 전송
@@ -49,6 +83,8 @@ html
 			| 태그도 중간에 넣을 수 있어요.
 		// <p>안녕하세요. 여러 줄을 입력합니다. <br /> 태그도 중간에 넣을 수 있어요.</p> 로 렌더링
 
+		include footer
+
 		script.
 			var message = 'bug';
 			alert(message);
@@ -59,3 +95,4 @@ html
 // 	title: '익스프레스',
 // 	title2: '안녕',
 // });
+-->

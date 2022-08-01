@@ -313,6 +313,7 @@ app.use((req, res, next) => {
 			- 태그 (한 칸 띄고) 내용 작성
 			- id는 #
 			- class는 .
+			- 중복되는 부분은 include, layout으로 해결
 
 
 ```
@@ -390,6 +391,7 @@ html
 ```
 
 ```javascript
+// app.js
 // pug 파일 가져오기
 res.render('test', {   // test.pug를 html로 렌더링
 	title: '익스프레스',   // render 메소드 두 번째 인자로 변수 선언 가능
@@ -399,4 +401,30 @@ res.render('test', {   // test.pug를 html로 렌더링
 
 // <참고> 렌더링 : 개발자가 작성한 코드를 유저에게 보여지는 형태로 보여주는 것
 // render() : 첫 번째 인자는 템플릿, 두 번째 인자는 템플릿에 추가할 정보가 담긴 객체
+```
+
+```pug
+// header.pug, footer.pug 파일 생성
+// 중복되는 부분 include로 해결
+
+// header.pug
+#header
+ span 헤더입니다.
+
+// footer.pug
+#footer
+ span 푸터입니다.
+
+// test.pug
+body
+ include header
+
+ include footer
+```
+
+```pug
+// layout.pug 파일에 작성
+
+// layout.pug
+
 ```
