@@ -12,10 +12,10 @@
 	- ORM (Object-relational Mapping)
 	- 자바스크립트 객체와 관계형 DB를 연결
 	- 예시 (CRUD)
-		- Create 생성
-		- Read 조회
-		- Update 수정
-		- Delete 삭제
+		- `Create` : 생성
+		- `Read` : 조회
+		- `Update` : 수정
+		- `Delete` : 삭제
 
 ### **초기설정**
 ```
@@ -33,19 +33,33 @@ sequelize init
 
 ### **models/index.js**
 ```javascript
+// path 모듈, Sequelize 패키지 불러오기
 const path = require('path');
 const Sequelize = require('sequelize');
 
-const env = process.env.NODE_ENV || 'development';   // 배포용 : 'production'
-const config = require('../config/config.json')   // sequelize에 대한 설정파일
+// Sequelize 패키지에 대한 설정 config로 불러오기 (개발환경)
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.json')[env];
 
+// Sequelize 패키지를 불러온 설정 넣어서 인스턴스화 시킴
+// new 연산자 + Sequelize 생성자 -> sequelize 인스턴스 생성
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+// db 객체 생성
 const db = {};
+
+// db에 Sequelize 패키지, sequelize 인스턴스 넣어보기
+db.Sequelize = sequelize;
+db.sequelize = sequelize;
+
+// db 객체 모듈화
+module.exports = db;
 ```
 
 ### **config/config.json** : sequelize에 대한 설정파일
 ```javascript
 {
-// 개발 환경일 때
+// 개발 환경
   "development": {         // DB 설정
     "username": "root",   // DB id
     "password": null,    // DB password
@@ -53,7 +67,7 @@ const db = {};
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-// 테스트 환경일 때
+// 테스트 환경
   "test": {
     "username": "root",
     "password": null,
@@ -61,7 +75,7 @@ const db = {};
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-// 배포 환경일 때
+// 배포 환경
   "production": {
     "username": "root",
     "password": null,
