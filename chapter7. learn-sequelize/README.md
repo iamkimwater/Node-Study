@@ -85,3 +85,45 @@ module.exports = db;
   }
 }
 ```
+
+```javascript
+// db 생성을 위한 개발 환경 변경 (password, database)
+// 참고 : Mysql 에서는 db와 스키마가 같은 의미로 쓰임
+  "development": {         
+    "username": "root",
+    "password": "IamKimwater!",
+    "database": "nodejs",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+	}
+```
+
+```
+// Terminal
+
+// db 생성
+sequelize db:create
+
+// 실행결과
+Loaded configuration file "config\config.json".
+Using environment "development".
+Database nodejs created.
+```
+
+### **db 구조**
+
+```
+database
+	table(users)
+		user1
+		user2
+		.
+		.
+		.
+	table(comments)
+		comment1
+		comment2
+		.
+		.
+		.
+```
