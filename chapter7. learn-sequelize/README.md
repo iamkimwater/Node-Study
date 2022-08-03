@@ -18,18 +18,56 @@
 	- 자바스크립트 객체와 관계형 DB를 연결
 
 ### **초기설정**
-
 ```
 // Terminal
+express learn-sequelize --views=pug
+cd learn-sequelize
+npm i
+
 npm i sequelize mysql2
-npm i -g sequelize-cli
+npm i -g sequelize-cli   // cli : command-line interface
 sequelize init
 ```
 
 <br>
 
 ### **models/index.js**
-
 ```javascript
+const path = require('path');
+const Sequelize = require('sequelize');
 
+const env = process.env.NODE_ENV || 'development';   // 배포용 : 'production'
+const config = require('../config/config.json')   // sequelize에 대한 설정파일
+
+const db = {};
+```
+
+### **config/config.json** : sequelize에 대한 설정파일
+```javascript
+{
+	// 개발 환경일 때
+  "development": {         // DB 설정
+    "username": "root",   // DB id
+    "password": null,    // DB password
+    "database": "database_development",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+	// 테스트 환경일 때
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+	// 배포 환경일 때
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
 ```
