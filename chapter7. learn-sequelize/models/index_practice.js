@@ -1,7 +1,21 @@
+// path 모듈, Sequelize 패키지 불러오기
 const path = require('path');
 const Sequelize = require('sequelize');
 
-const env = process.env.NODE_ENV || 'development';   // 배포용 : 'production'
-const config = require('../config/config.json')   // sequelize에 대한 설정파일
+// Sequelize 패키지에 대한 설정 config로 불러오기 (개발환경)
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.json')[env];
 
+// Sequelize 패키지를 불러온 설정 넣어서 인스턴스화 시킴
+// new 연산자 + Sequelize 생성자 -> sequelize 인스턴스 생성
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+// db 객체 생성
 const db = {};
+
+// db에 Sequelize 패키지, sequelize 인스턴스 넣어보기
+db.Sequelize = sequelize;
+db.sequelize = sequelize;
+
+// db 객체 모듈화
+module.exports = db;
