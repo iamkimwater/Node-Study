@@ -45,7 +45,7 @@ const db = {};
 ### **config/config.json** : sequelize에 대한 설정파일
 ```javascript
 {
-	// 개발 환경일 때
+// 개발 환경일 때
   "development": {         // DB 설정
     "username": "root",   // DB id
     "password": null,    // DB password
@@ -53,7 +53,7 @@ const db = {};
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-	// 테스트 환경일 때
+// 테스트 환경일 때
   "test": {
     "username": "root",
     "password": null,
@@ -61,7 +61,7 @@ const db = {};
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-	// 배포 환경일 때
+// 배포 환경일 때
   "production": {
     "username": "root",
     "password": null,
