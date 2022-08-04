@@ -114,16 +114,24 @@ Database nodejs created.
 
 ```
 database
-	table(users)
+	table(user)    -> models/user.js 파일 추가
 		user1
 		user2
 		.
 		.
-		.
-	table(comments)
+	table(comment) -> models/comment.js 파일 추가
 		comment1
 		comment2
 		.
 		.
-		.
+```
+
+### **models/user.js**
+```javascript
+
+```
+
+### **models/comment.js**
+```javascript
+
 ```
