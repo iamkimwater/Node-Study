@@ -91,7 +91,7 @@ module.exports = db;
 // 참고 : Mysql 에서는 db와 스키마가 같은 의미로 쓰임
   "development": {         
     "username": "root",
-    "password": "IamKimwater!",
+    "password": "password",
     "database": "nodejs",
     "host": "127.0.0.1",
     "dialect": "mysql"
