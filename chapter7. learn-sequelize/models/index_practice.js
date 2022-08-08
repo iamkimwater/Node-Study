@@ -17,5 +17,8 @@ const db = {};
 db.Sequelize = sequelize;
 db.sequelize = sequelize;
 
+db.User = require('./user')(sequelize, Sequelize);
+db.Comment = require('./comment')(sequelize, Sequelize);
+
 // db 객체 모듈화
 module.exports = db;
