@@ -20,5 +20,10 @@ db.sequelize = sequelize;
 db.User = require('./user')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 
+// MySQL과 같은 관계형 DB는 테이블 간 관계가 중요함
+// user와 commenter의 관계 작성
+db.User.hasMany(db.Comment);
+db.Comment.BelongsTo(db.User);
+
 // db 객체 모듈화
 module.exports = db;
