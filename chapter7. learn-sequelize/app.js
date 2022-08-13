@@ -4,11 +4,15 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
+// 비구조화할당, 경로에 index 생략가능
+const { sequelize } = require('./models');
 
 const app = express();
-
+// db 객체 모듈화 시킨 후 싱크 -> 서버 시작시 테이블 생성
+// sequelize가 알아서 SQL 생성
+sequelize.sync();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');

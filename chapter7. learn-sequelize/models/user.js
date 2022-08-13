@@ -1,8 +1,8 @@
-const { DataTypes } = require("sequelize/types");
-const { sequelize } = require(".");
+// const { DataTypes } = require("sequelize/types");
+// const { sequelize } = require(".");
 
 // 유저 테이블 생성
-// 컬럼: 이름, 나이, 결혼여부, 자기소개, 생성일
+// 컬럼: id 넘버, 이름, 나이, 결혼여부, 자기소개, 생성일
 // 테이블 안에 데이터가 들어갈 수 있는 틀(컬럼들)을 만듬
 module.exports = (sequelize, DataTypes) => {
 	// sequelize.define 안에 테이블 이름, 테이블 내용 들어감
