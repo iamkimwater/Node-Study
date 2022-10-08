@@ -23,4 +23,4 @@ server.on('error', (error) => {
 
 // key=value; path=경로; expires=만료날짜; domain=도메인; secure; httpOnly
 // 요청이나 응답에는 그에 대한 정보를 담고 있는 헤더가 포함되어 있음
-// Request Header의 Cookie: 클라이언트가 서버에 요청을 보낼 때 같이 보내는 쿠키
+// Request Header의 Cookie: 클라이언트가 서버에 요청을 보낼 때 같이 보내는 쿠키 
